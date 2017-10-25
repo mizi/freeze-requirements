@@ -26,4 +26,4 @@ class wheel_name(Command):
         bdist_wheel_obj = bdist_wheel(self.distribution)
         bdist_wheel_obj.ensure_finalized()
         archive_basename = bdist_wheel_obj.get_archive_basename()
-        print archive_basename + '.whl'
+        print(archive_basename + '.whl')
