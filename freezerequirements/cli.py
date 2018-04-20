@@ -1,21 +1,28 @@
 from __future__ import print_function
 
+from distutils.version import LooseVersion
 import os
 import sys
-import os.path as op
+from os import path as op
 import tempfile
 import json
 import collections
+import pip
 
 import sh
 import click
-from pip.req import InstallRequirement
 
 from .utils import (likely_distro, cache_dir, cache_path,
                     group_and_select_packages, StringWithAttrs,
                     create_work_dir, get_wheel_name, colored, build_wheel,
                     canonicalize_distro_name)
 from .exceptions import VersionsConflicts
+
+
+if LooseVersion(pip.__version__) >= "10.0.0":
+    from pip._internal.req import InstallRequirement
+else:
+    from pip.req import InstallRequirement
 
 
 @click.group()
